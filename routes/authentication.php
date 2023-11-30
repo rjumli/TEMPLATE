@@ -4,13 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
-// use Spatie\WelcomeNotification\WelcomesNewUsers;
-// use App\Http\Controllers\Auth\WelcomeController;
+use Spatie\WelcomeNotification\WelcomesNewUsers;
+use App\Http\Controllers\Auth\WelcomeController;
 
-// Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
-//     Route::get('welcome/{user}', [WelcomeController::class, 'showWelcomeForm'])->name('welcome');
-//     Route::post('welcome/{user}', [WelcomeController::class, 'savePassword']);
-// });
+Route::group(['middleware' => ['web', WelcomesNewUsers::class,]], function () {
+    Route::get('welcome/{user}', [WelcomeController::class, 'showWelcomeForm'])->name('welcome');
+    Route::post('welcome/{user}', [WelcomeController::class, 'savePassword']);
+});
 
 Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
